@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #cf2323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Label layoutX="84.0" layoutY="235.0" prefHeight="130.0" prefWidth="433.0" text="Help Luffy get to the One Piece!">
+         <font>
+            <Font name="Montserrat Regular" size="27.0" />
+         </font></Label>
+      <Button layoutX="258.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="37.0" prefWidth="84.0" text="Start">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <ImageView fitHeight="237.0" fitWidth="345.0" layoutX="128.0" layoutY="79.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image222.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
