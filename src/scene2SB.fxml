@@ -50,7 +50,17 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="readyBtn" layoutX="227.0" layoutY="303.0" mnemonicParsing="false" onAction="#startGame" prefHeight="144.0" prefWidth="297.0" text="Start Game">
+      <Button fx:id="easyBtn" layoutX="14.0" layoutY="379.0" mnemonicParsing="false" onAction="#startGame" prefHeight="81.0" prefWidth="224.0" text="Easy">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Button>
+      <Button fx:id="mediumBtn" layoutX="14.0" layoutY="470.0" mnemonicParsing="false" onAction="#startGame" prefHeight="81.0" prefWidth="224.0" text="Medium">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Button>
+      <Button fx:id="hardBtn" layoutX="14.0" layoutY="563.0" mnemonicParsing="false" onAction="#startGame" prefHeight="81.0" prefWidth="224.0" text="Hard">
          <font>
             <Font size="38.0" />
          </font>
@@ -84,5 +94,10 @@
             <Rectangle2D height="200.0" minX="160.0" width="150.0" />
          </viewport>
       </ImageView>
+      <Text fx:id="difficultyText" layoutX="14.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your difficulty:" wrappingWidth="224.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

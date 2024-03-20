@@ -44,6 +44,9 @@ public class Controller {
     {216, 200}}; // 22
 
     private String[] signs = {"+", "-", "x", "÷"};
+
+    private String[] difficulties = {"Easy", "Medium", "Hard"};
+    private int difficultyLevel;
     
     @FXML
     private Scene scene;
@@ -68,8 +71,13 @@ public class Controller {
     private Button doneBtn;
 
     @FXML
-    private Button readyBtn;
-
+    private Button easyBtn;
+    @FXML
+    private Button mediumBtn;
+    @FXML
+    private Button hardBtn;
+    @FXML
+    private Text difficultyText;
     @FXML
     private Button rollBtn;
 
@@ -102,19 +110,15 @@ public class Controller {
     }
 
     public void startGame(ActionEvent event) throws Exception{
-        readyBtn.setVisible(false);
-        sharkCount = 0;
-        count = 0;
-        shark.setVisible(false);
-        luffyHead.setVisible(true);
-        luffyHead.setLayoutX(211);
-        luffyHead.setLayoutY(657);
-        mathQ.setVisible(true);
-        rollBtn.setVisible(true);
-        diceNum.setVisible(true);
-        finishText.setLayoutX(25);
-        finishText.setLayoutY(-19);
-        resetNums();
+        Button difficulty = (Button) event.getSource();
+        for (int i = 0; i < difficulties.length; i++){
+            if (difficulty.getText().equals(difficulties[i])){
+                difficultyLevel = i;
+                // 0 = easy, 1 = medium, 2 = hard
+            }
+        }
+        resetGame();
+        resetNums(difficultyLevel);
     }
 
     public void submit(ActionEvent event) throws Exception{ 
@@ -152,10 +156,8 @@ public class Controller {
             answer.setPromptText("Incorrect");
         }
         if (!firstTime){
-            shark.setLayoutX(nums[sharkCount][0]-8);
-            shark.setLayoutY(nums[sharkCount][1]-38);
-            sharkCount++;
-            if (luffyHead.getLayoutX() == shark.getLayoutX()+8 && luffyHead.getLayoutY() == shark.getLayoutY()+38){
+            if (count <= sharkCount){
+                difficultyText.setVisible(true);
                 mathQ.setVisible(false);
                 rollBtn.setVisible(false);
                 diceNum.setVisible(false);
@@ -163,14 +165,18 @@ public class Controller {
                 finishText.setText("Game over! Play again?");
                 finishText.setLayoutX(24);
                 finishText.setLayoutY(49);
-                readyBtn.setVisible(true);
+                easyBtn.setVisible(true);
+                mediumBtn.setVisible(true);
+                hardBtn.setVisible(true);
             }
+            sharkMove(difficultyLevel);
+            sharkCount++;
         }
         if (count >= 4 && firstTime){
             sharkAttack();
             firstTime = false;
         }
-        resetNums();
+        resetNums(difficultyLevel);
     }
 
     public void rollDice(ActionEvent event) throws Exception{
@@ -188,18 +194,39 @@ public class Controller {
             diceNum.setVisible(false);
             luffyHead.setLayoutX(214);
             luffyHead.setLayoutY(199);
+            finishText.setText("You reached the One Piece! Play again?");
             finishText.setLayoutX(24);
             finishText.setLayoutY(49);
-            readyBtn.setVisible(true);
+            easyBtn.setVisible(true);
+            mediumBtn.setVisible(true);
+            hardBtn.setVisible(true);
         }
         
     }
-
     public void sharkAttack(){
-        shark.setVisible(true);
         shark.setLayoutX(112);
         shark.setLayoutY(603);
         generalText.setText("Don't let the Marine Corps catch up!");
+    }
+    public void sharkMove(int i){
+        int percent = 0;
+        if (i == 0){
+            shark.setLayoutX(nums[sharkCount][0]-8);
+            shark.setLayoutY(nums[sharkCount][1]-38);
+        } else if (i == 1){
+            percent = generateRandomNumber(1, 4);
+            if (percent < 3){
+                sharkCount++;
+                shark.setLayoutX(nums[sharkCount][0]-8);
+                shark.setLayoutY(nums[sharkCount][1]-38); 
+            }
+            shark.setLayoutX(nums[sharkCount][0]-8);
+            shark.setLayoutY(nums[sharkCount][1]-38); 
+        } else if (i == 2){
+            sharkCount++;
+            shark.setLayoutX(nums[sharkCount][0]-8);
+            shark.setLayoutY(nums[sharkCount][1]-38); 
+        }
     }
 
     private int generateRandomNumber(int min, int max) {
@@ -223,12 +250,48 @@ public class Controller {
         bd = bd.setScale(0, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
-    public void resetNums(){
-        num1.setText(String.valueOf(generateRandomNumber(1, 999)));
-        num2.setText(String.valueOf(generateRandomNumber(1, 999)));
-        sign.setText(signs[generateRandomNumber(0, 3)]);
+    public void resetNums(int i){
+        if (i == 0){
+            num1.setText(String.valueOf(generateRandomNumber(1, 9)));
+            num2.setText(String.valueOf(generateRandomNumber(1, 9)));
+            sign.setText(signs[generateRandomNumber(0, 3)]);
+        } else if (i == 1){
+            num1.setText(String.valueOf(generateRandomNumber(10, 99)));
+            num2.setText(String.valueOf(generateRandomNumber(10, 99)));
+            sign.setText(signs[generateRandomNumber(0, 3)]);
+        } else if (i == 2){
+            num1.setText(String.valueOf(generateRandomNumber(100, 999)));
+            num2.setText(String.valueOf(generateRandomNumber(100, 999)));
+            sign.setText(signs[generateRandomNumber(0, 3)]);
+        }
     }
 
+    public void resetGame(){
+        easyBtn.setVisible(false);
+        mediumBtn.setVisible(false);
+        hardBtn.setVisible(false);
+        difficultyText.setVisible(false);
+        sharkCount = 0;
+        count = 0;
+        firstTime = true;
+        shark.setLayoutX(-105);
+        shark.setLayoutY(603);
+        luffyHead.setVisible(true);
+        luffyHead.setLayoutX(211);
+        luffyHead.setLayoutY(657);
+        mathQ.setVisible(true);
+        doneBtn.setVisible(true);
+        rollBtn.setVisible(true);
+        diceNum.setVisible(true);
+        finishText.setLayoutX(25);
+        finishText.setLayoutY(-19);
+        diceNum.setText("0");
+        answer.setPromptText("");
+        diceNum.setLayoutX(-31);
+        diceNum.setLayoutY(434);
+        rollBtn.setLayoutX(-97);
+        rollBtn.setLayoutY(352);
+    }
     @FXML
     public void closeGame(ActionEvent event) {
         Stage stage = (Stage) exitBtn.getScene().getWindow();
