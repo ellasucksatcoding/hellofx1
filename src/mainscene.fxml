@@ -2,25 +2,37 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #cf2323;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Label layoutX="84.0" layoutY="235.0" prefHeight="130.0" prefWidth="433.0" text="Help Luffy get to the One Piece!">
+      <Label layoutX="84.0" prefHeight="130.0" prefWidth="433.0" text="Help Luffy get to the One Piece!">
          <font>
             <Font name="Montserrat Regular" size="27.0" />
          </font></Label>
-      <Button layoutX="258.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="37.0" prefWidth="84.0" text="Start">
+      <Button layoutX="229.0" layoutY="319.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="80.0" prefWidth="142.0" text="Start">
          <font>
-            <Font size="15.0" />
+            <Font size="36.0" />
          </font></Button>
-      <ImageView fitHeight="237.0" fitWidth="345.0" layoutX="128.0" layoutY="79.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="237.0" fitWidth="345.0" layoutX="128.0" layoutY="399.0" opacity="0.21" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image222.png" />
          </image>
       </ImageView>
+      <Text layoutX="229.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions:" wrappingWidth="141.53515625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextArea editable="false" layoutX="123.0" layoutY="136.0" prefHeight="164.0" prefWidth="354.0" text="1. Choose a Game Mode (Easy, Medium, Hard)&#10;2. Press Start Game&#10;3. Answer the math questions correctly; if you get it right,&#10;you'll move forward on the board.&#10;If there's a decimal answer, round to 4 digits!&#10;4. Be careful! Answer too many wrong and the 'shark' will&#10;catch up to you!&#10;5. Have fun =)">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextArea>
    </children>
 </AnchorPane>

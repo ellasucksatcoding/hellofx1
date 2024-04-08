@@ -242,7 +242,7 @@ public class Controller {
         } else if (sign.getText().equals(signs[2])){
             return question1*question2;
         } else {
-            return question1/question2;
+            return (double)question1/question2;
         }
     }
     private static double round(double value) { 
